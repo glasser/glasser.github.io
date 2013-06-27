@@ -1,4 +1,6 @@
 name: floating point
+description: david glasser's log
+url: http://point.davidglasser.net
 safe: true
 lsi: false
 pygments: true
