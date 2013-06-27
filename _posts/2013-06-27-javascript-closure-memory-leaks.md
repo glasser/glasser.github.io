@@ -128,7 +128,7 @@ which it actually reads and writes; the values in that dictionary would
 themselves be mutable cells that could be shared among the lexical environments
 of multiple closures. Based on my casual reading of the ECMAScript 5th Edition
 standard, this would be legitimate: its description of Lexical Environment
-describes them as being "purely specification mechanisms [which] need not
+describes them as being "purely specification mechanisms \[which] need not
 correspond to any specific artefact of an ECMAScript implementation". That said,
 this standard doesn't actually contain the word "garbage" and only says the word
 "memory" once.
