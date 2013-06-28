@@ -96,7 +96,7 @@ setInterval(run, 1000);
 Open up the Timeline tab in your Chrome Developer Tools, switch to the Memory
 view, and hit record:
 
-![Memory leak in Chrome Timeline]({{ site.url }}/assets/2013-06-27-leak.png)
+![Memory leak in Chrome Timeline](/assets/2013-06-27-leak.png)
 
 Looks like we're using an extra megabyte every second! And even clicking the
 garbage can icon to force a manual GC doesn't help. So it looks like we are
@@ -122,7 +122,7 @@ But as soon as a variable is used by *any* closure, it ends up in the lexical
 environment shared by *all* closures in that scope. And that can lead to memory
 leaks.
 
-You could imagine a cleverer implementation of lexical environments that avoids
+You could imagine a more clever implementation of lexical environments that avoids
 this problem. Each closure could have a dictionary containing only the variables
 which it actually reads and writes; the values in that dictionary would
 themselves be mutable cells that could be shared among the lexical environments
