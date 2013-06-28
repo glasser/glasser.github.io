@@ -13,28 +13,9 @@ problem affects even my current Chrome install!)
 
 JavaScript is secretly a functional programming language, and its functions are
 *closures*: function objects get access to variables defined in their enclosing
-scope, even when that scope is finished! For example:
-
-{% highlight js %}
-var makeCounter = function () {
-  var x = 0;
-  return function () {
-    return x++;
-  };
-};
-var counter1 = makeCounter();
-var counter2 = makeCounter();
-console.log(counter1());  // prints 0
-console.log(counter1());  // prints 1
-console.log(counter2());  // prints 0 (it's a different counter!)
-console.log(counter1());  // prints 2 (it's the first counter!)
-{% endhighlight %}
-
-Each function returned from `makeCounter` has its own separate copy of the
-variable `x`, which it can read and write separately from other counter
-functions.  Because JavaScript does automatic garbage collection, each `x`
-variable will survive for as long as its corresponding counter function, and
-will eventually be GCed once the function is destroyed.
+scope, even when that scope is finished. Local variables which are captured by a
+closure are garbage collected once the function they are defined in has finished
+**and** all functions defined inside their scope are themselves GCed.
 
 Now, consider this code:
 
