@@ -103,6 +103,8 @@ But as soon as a variable is used by *any* closure, it ends up in the lexical
 environment shared by *all* closures in that scope. And that can lead to memory
 leaks.
 
+![Diagram of lexical environments](/assets/2013-06-27-js-diagram.png)
+
 You could imagine a more clever implementation of lexical environments that avoids
 this problem. Each closure could have a dictionary containing only the variables
 which it actually reads and writes; the values in that dictionary would
