@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A surprising JavaScript memory leak"
+title:  "A surprising JavaScript memory leak found at Meteor"
 date:   2013-06-27 13:38:06
 ---
 
