@@ -41,20 +41,20 @@ But what if we had a closure that outlasted `run`?
 {% highlight js %}
 var run = function () {
   var str = new Array(1000000).join('*');
-  setInterval(function () {
+  var logIt = function () {
     console.log('interval');
-  }, 100);
+  };
+  setInterval(logIt, 100);
 };
 setInterval(run, 1000);
 {% endhighlight %}
 
 Every second, `run` allocates a giant string, and starts an interval that logs
-something 10 times a second. The inner function does last forever, and `str` is
-in its lexical scope, so this could be a memory leak! Fortunately, JavaScript
+something 10 times a second. `logIt` does last forever, and `str` is in its
+lexical scope, so this could be a memory leak! Fortunately, JavaScript
 implementations (or at least current Chrome) are smart enough to notice that
-`str` isn't used in the inner function, so it's not put into the lexical
-environment of the inner function, and it's OK to GC the big string once `run`
-finishes.
+`str` isn't used in `logIt`, so it's not put into `logIt`'s lexical environment,
+and it's OK to GC the big string once `run` finishes.
 
 Well, great! JavaScript protects us from memory leaks, right? Well, let's try
 one more version, combining the first two examples.
@@ -67,9 +67,10 @@ var run = function () {
       console.log("str was something");
   };
   doSomethingWithStr();
-  setInterval(function () {
+  var logIt = function () {
     console.log('interval');
-  }, 100);
+  }
+  setInterval(logIt, 100);
 };
 setInterval(run, 1000);
 {% endhighlight %}
@@ -86,8 +87,7 @@ leaking `str`.
 But isn't this just the same situation as before? `str` is only referenced in
 the main body of `run`, and in `doSomethingWithStr`. `doSomethingWithStr` itself
 gets cleaned up once `run` ends... the only thing from `run` that escapes is the
-second closure which gets passed to `setInterval`. And that closure doesn't
-refer to `str` at all!
+second closure, `logIt`. And `logIt` doesn't refer to `str` at all!
 
 So even though there's no way for any code to ever refer to `str` again, it
 never gets garbage collected! Why? Well, the typical way that closures are
