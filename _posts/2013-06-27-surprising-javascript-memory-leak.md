@@ -9,7 +9,10 @@ This week, my teammates at [Meteor][meteor] tracked down a surprising
 `javascript closure memory leak` and came up with nothing relevant, so maybe
 this is a relatively unknown issue. (Most of what you find for that query talks
 about the bad garbage collection algorithm in old versions of IE, but this
-problem affects even my current Chrome install!)
+problem affects even my current Chrome install!)  **UPDATE**: Vyacheslav Egorov
+pointed me at his [excellent post][mraleph] on this subject with more detailed
+examples, better pictures, and knowledge of V8 internals. Definitely adding his
+blog to my <del>Reader</del>Feedly.
 
 JavaScript is secretly a functional programming language, and its functions are
 *closures*: function objects get access to variables defined in their enclosing
@@ -159,3 +162,4 @@ require you to have to think about them.
 [meteor]: https://www.meteor.com/
 [issue]: https://github.com/meteor/meteor/issues/1157
 [fix]: https://github.com/meteor/meteor/commit/49e9813
+[mraleph]: http://mrale.ph/blog/2012/09/23/grokking-v8-closures-for-fun.html
