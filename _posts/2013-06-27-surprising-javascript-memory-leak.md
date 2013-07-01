@@ -13,6 +13,8 @@ problem affects even my current Chrome install!)  **UPDATE**: Vyacheslav Egorov
 pointed me at his [excellent post][mraleph] on this subject with more detailed
 examples, better pictures, and knowledge of V8 internals. Definitely adding his
 blog to my <del>Reader</del>Feedly.
+Also, there's a great [paper about this issue with an optimal implementation][appel],
+though not in the context of JavaScript.
 
 JavaScript is secretly a functional programming language, and its functions are
 *closures*: function objects get access to variables defined in their enclosing
@@ -163,3 +165,4 @@ require you to have to think about them.
 [issue]: https://github.com/meteor/meteor/issues/1157
 [fix]: https://github.com/meteor/meteor/commit/49e9813
 [mraleph]: http://mrale.ph/blog/2012/09/23/grokking-v8-closures-for-fun.html
+[appel]: http://flint.cs.yale.edu/flint/publications/escc.pdf
