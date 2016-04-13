@@ -3,6 +3,6 @@ description: david glasser's log
 url: http://point.davidglasser.net
 safe: true
 lsi: false
-pygments: true
+highlighter: 'rouge'
 timezone: America/Los_Angeles
 exclude: ['unpublished']
